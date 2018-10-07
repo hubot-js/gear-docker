@@ -1,0 +1,18 @@
+[
+  {
+    "speak": "docker:config.containers-allowed.partOne"
+  },
+  {
+    "speak": "docker:config.containers-allowed.partTwo"
+  },
+  {
+    "speak": "docker:config.containers-allowed.partThree"  
+  },
+  {
+    "speak": "docker:config.containers-allowed.partFour",
+    "handler": "src/configHandler/containers-allowed-handler"  
+  }, 
+  {
+    "speak": "docker:config.containers-allowed.partFive"
+  }  
+]

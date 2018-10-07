@@ -1,0 +1,8 @@
+[
+   {
+      "key": "docker",
+      "name": "docker:categories.name",
+      "description": "docker:categories.description",
+      "visible": true
+   }
+]

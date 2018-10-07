@@ -1,0 +1,54 @@
+{
+  "categories": {
+    "name": "Docker",
+    "description": "To use the Docker features, use the commands below: "
+  },
+
+  "config": {
+    "containers-allowed": {
+      "partOne": "In order to be able to use the gear-docker features, the names of the containers must be configured.",
+      "partTwo": "Enter the list of containers that you want to enable, separated by a comma. *The old list will be lost*.",
+      "partThree": "To enable use in any container say it: *all-containers*. (Caution: By doing this, anyone can start, stop, and restart all the host containers.)",
+      "partFour": "If you want to keep the current configuration say it: *keep*",
+      "partFive": "Ok. Containers configured."
+    },
+    "keep": "keep"
+  },
+
+  "container": {
+    "notFound": "Sorry, this container does not exist.",
+    "alreadyStopped": "The container is already stopped.", 
+    "withoutPermission": "It is not allowed to manipulate this container."
+  },
+
+  "startContainer": {
+    "trigger": "start $",
+    "description": "Start a container",
+    "options": {
+      "message": "Ok. Starting the container."
+    }
+  },
+
+  "stopContainer": {
+    "trigger": "stop $",
+    "description": "Stop a container",
+    "options": {
+      "message": "Ok. Stopping the container."
+    }
+  },
+
+  "restartContainer": {
+    "trigger": "restart $",
+    "description": "Restart a container",
+    "options": {
+      "message": "Ok. Restarting the container."
+    }
+  },
+
+  "log": {
+    "error": {
+      "unexpectedError": "Unexpected error. Check the logs.",
+      "container": "Error handling container"
+    }
+  }
+}
