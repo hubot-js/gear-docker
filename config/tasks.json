@@ -1,0 +1,30 @@
+[
+   {
+      "handler": "container-start",
+      "trigger": "docker:startContainer.trigger",
+      "category": "docker",
+      "description": "docker:startContainer.description",
+      "options": {
+        "message": "docker:startContainer.options.message"
+      }
+   },
+   {
+      "handler": "container-stop",
+      "trigger": "docker:stopContainer.trigger",
+      "category": "docker",
+      "description": "docker:stopContainer.description",
+      "options": {
+        "message": "docker:stopContainer.options.message"
+      }
+   },
+   {
+    "handler": "container-restart",
+    "trigger": "docker:restartContainer.trigger",
+    "category": "docker",
+    "description": "docker:restartContainer.description",
+    "options": {
+      "message": "docker:restartContainer.options.message"
+    }
+ }
+]
+
