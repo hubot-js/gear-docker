@@ -2,7 +2,7 @@
 'use strict';
 
 exports.insertContainer = insertContainer;
-exports.allowedContainer = allowedContainer;
+exports.getAllowedContainers = getAllowedContainers;
 exports.deleteContainers = deleteContainers;
 exports.listContainers = listContainers;
 
@@ -13,9 +13,8 @@ function insertContainer(name) {
     dataBase.run('INSERT INTO container(name) VALUES(?)', [name]));
 }
 
-function allowedContainer(name) {
-  return db.getDb().then(dataBase =>
-    dataBase.get("SELECT * FROM container WHERE name = ? OR name = 'all-containers'", name));
+function getAllowedContainers() {
+  return db.getDb().then(dataBase => dataBase.all('SELECT * FROM container'));
 }
 
 function deleteContainers() {

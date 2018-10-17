@@ -8,16 +8,20 @@
     "containers-allowed": {
       "partOne": "In order to be able to use the gear-docker features, the names of the containers must be configured.",
       "partTwo": "Enter the list of containers that you want to enable, separated by a comma. *The old list will be lost*.",
-      "partThree": "To enable use in any container say it: *all-containers*. (Caution: By doing this, anyone can start, stop, and restart all the host containers.)",
-      "partFour": "If you want to keep the current configuration say it: *keep*",
-      "partFive": "Ok. Containers configured."
+      "partThree": "You can select all containers that begin or end with a given name. Example:",
+      "partFour": "`*app - All containers ending with app`",
+      "partFive": "`app* - All containers that start with app`",
+      "partSix": "`*app* - All containers that contain the name app`",
+      "partSeven": "`* - All containers. Caution. By doing this anyone can start, stop and restart all the containers of the host.`",
+      "partEight": "If you want to keep the current configuration say it: *keep*",
+      "partNine": "Ok. Containers configured."
     },
     "keep": "keep"
   },
 
   "container": {
     "notFound": "Sorry, this container does not exist.",
-    "alreadyStopped": "The container is already stopped.", 
+    "already": "The container is already in desired state.", 
     "withoutPermission": "It is not allowed to manipulate this container."
   },
 

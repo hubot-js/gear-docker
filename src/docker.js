@@ -20,10 +20,39 @@ function restartContainer(hubot, message, awnser, containerName) {
 }
 
 function containerFlow(hubot, message, awnser, containerName, action) {
-  getContainer(hubot, message, containerName)
-    .then(container => containerAction(container, action))
+  const container = new Docker().getContainer(containerName);
+
+  container.inspect()
+    .then(() => db.getAllowedContainers())
+    .then(permissionConfig => containerAllowed(container, permissionConfig))
+    .then(() => containerAction(container, action))
     .then(() => hubot.speak(message, awnser, { containerName }))
     .catch(err => handleWithError(hubot, message, err));
+}
+
+function containerAllowed(container, permissionConfig) {
+  if (permissionConfig.filter(c => match(container.id, c.name))[0]) {
+    return Promise.resolve();
+  }
+
+  return Promise.reject(new Error('nowAllowed'));
+}
+
+function match(string, searchCriteria) {
+  if (searchCriteria === string || searchCriteria === '*') {
+    return true;
+  }
+
+  if (searchCriteria.startsWith('*') && searchCriteria.endsWith('*')
+      && string.includes(searchCriteria.replace(/\*/g, ''))) {
+    return true;
+  }
+
+  if (searchCriteria.startsWith('*') && string.endsWith(searchCriteria.replace('*', ''))) {
+    return true;
+  }
+
+  return searchCriteria.endsWith('*') && string.startsWith(searchCriteria.replace('*', ''));
 }
 
 function containerAction(container, action) {
@@ -42,26 +71,9 @@ function containerAction(container, action) {
   return Promise.reject(new Error('unknow action'));
 }
 
-function getContainer(hubot, message, containerName) {
-  const container = new Docker().getContainer(containerName);
-
-  return container.inspect()
-    .then(c => db.allowedContainer(adjustContainerName(c)))
-    .then(isAllowed => permissionValidation(hubot, message, isAllowed, container))
-    .catch((err) => { throw new Error(err); });
-}
-
-function permissionValidation(hubot, message, isAllowed, container) {
-  if (isAllowed) {
-    return Promise.resolve(container);
-  }
-
-  return Promise.reject('nowAllowed');
-}
-
 function handleWithError(hubot, message, err) {
   if (err && err.statusCode === 304) {
-    hubot.speak(message, 'docker:container.alreadyStopped');
+    hubot.speak(message, 'docker:container.already');
   } else if (err && err.statusCode === 404) {
     hubot.speak(message, 'docker:container.notFound');
   } else if (err.message === 'nowAllowed') {
@@ -70,8 +82,4 @@ function handleWithError(hubot, message, err) {
     hubot.logDetailedError('docker:log.error.container', err);
     hubot.speak(message, 'docker:log.error.unexpectedError');
   }
-}
-
-function adjustContainerName(container) {
-  return container.Name.replace('/', '');
 }

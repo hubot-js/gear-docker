@@ -9,10 +9,22 @@
     "speak": "docker:config.containers-allowed.partThree"  
   },
   {
-    "speak": "docker:config.containers-allowed.partFour",
+    "speak": "docker:config.containers-allowed.partFour"  
+  },
+  {
+    "speak": "docker:config.containers-allowed.partFive"  
+  },
+  {
+    "speak": "docker:config.containers-allowed.partSix"  
+  },
+  {
+    "speak": "docker:config.containers-allowed.partSeven"  
+  },
+  {
+    "speak": "docker:config.containers-allowed.partEight",
     "handler": "src/configHandler/containers-allowed-handler"  
   }, 
   {
-    "speak": "docker:config.containers-allowed.partFive"
+    "speak": "docker:config.containers-allowed.partNine"
   }  
 ]
